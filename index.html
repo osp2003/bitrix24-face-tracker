@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    </head>
+    <body>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#!" class="brand-logo center">Face-tracker контактов</a>
+            </div>
+        </nav>
+        <div class="row">
+            <div class="col s6 m6">
+                <div class="row">
+                    <div class="col s6 m6">
+                        <div class="card">
+                            <div class="card-image">
+                                <video id="video" autoplay style="display: none"></video>
+                                <canvas id="canvas_video" width="200px" height="250px"></canvas>
+                            </div>
+                            <div class="card-action">
+                                <a id="get_photo" class="btn-floating halfway-fab waves-effect waves-light red">
+                                    <i class="material-icons">add_a_photo</i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s6 m6">
+                        <div class="card">
+                            <div class="card-image">
+                                <input type="file" id="imageLoader">
+                                <canvas id="canvas_photo" width="200px" height="250px"></canvas>
+                            </div>
+                            <div class="card-action">
+                                <a href="#modal1" class="btn-floating halfway-fab waves-effect waves-light red modal-trigger">
+                                    <i class="material-icons">person_add</i>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- Modal Structure -->
+                    <div id="modal1" class="modal">
+                        <div class="modal-content">
+                            <h4>Добавить контакт в Битрикс24</h4>
+                            <div class="row">
+                                <div class="card col s12 m12">
+                                    <input id="first_name" type="text" placeholder="Имя" size="40"  data-length="40">
+                                    <input id="last_name" type="text" placeholder="Фамилия" size="40" data-length="40">
+                                    <input id="phone" type="text" placeholder="Телефон" size="40" data-length="40">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a id="add_contact" class="modal-close waves-effect waves-light btn-small">Создать контакт</a>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+                    <div class="card col s7 m7">
+                        <p><b>ИНФО</b></p>
+                        <p>Лицо найдено: <span id="isFindFace">--</span></p>
+                        <p>Загружено контактов: <span id="descriptor_find_or_no"></span></p>
+                    </div>
+                    <div class="col m5 s5">
+                      <a id="search_face" class="btn waves-effect waves-light right">Найти контакт</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card col s6 m6">
+                <p id="search_result">Наиболее похожий контакт</p>
+                <ul class="collection">
+                  <li class="collection-item avatar">
+                    <i class="material-icons circle">person</i>
+                    <a id="href_to_contact" target="_blank" href=""></a>
+                    <p>Дистанция: <span id="distance"></span></p>
+                  </li>
+                </ul>
+
+            </div>
+
+        </div>
+    </body>
+
+    <script src="https://api.bitrix24.com/api/v1/"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core@1.7.0/dist/tf-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.7.0/dist/tf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="js/face-api.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.modal');
+            var instances = M.Modal.init(elems);
+        });
+    </script>
+
+
+</html>
+
