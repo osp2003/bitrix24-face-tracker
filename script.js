@@ -59,6 +59,7 @@ function push_data(descriptors_data){
       if (descriptor_array.length == 128) {
         label = `${descriptors_data[i]["ID"]};${descriptors_data[i]["NAME"]};${descriptors_data[i]["LAST_NAME"]}`
         labeledDescriptors.push(new faceapi.LabeledFaceDescriptors(label,[descriptor_array]))
+        document.getElementById("contacts_count").innerText = labeledDescriptors.length
       }
     }
   }    
@@ -110,6 +111,7 @@ async function handleClickSearchButton(e){
 
 // обработчик кнопки "сделать фото из видеопотока"
 async function handleClickPhotoButton(e){
+  document.getElementById("isFindFace").innerText = "---"
   var canvas = document.getElementById('canvas_photo');
   var ctx = canvas.getContext('2d');
   ctx.drawImage(video, 0, 0, VIDEOWIDTH, VIDEOHEIGHT);
@@ -161,6 +163,7 @@ async function handleClickAddContactButton(e){
 
 // загрузить фото с компа
 async function handleImage(e){
+  document.getElementById("isFindFace").innerText = "---"
   var canvas = document.getElementById('canvas_photo');
   var ctx = canvas.getContext('2d');
   ctx.clearRect(0, 0, canvas.width, canvas.height)
